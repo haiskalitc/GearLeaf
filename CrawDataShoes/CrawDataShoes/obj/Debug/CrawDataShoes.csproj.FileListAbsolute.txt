@@ -1,0 +1,16 @@
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\bin\Debug\CrawDataShoes.exe.config
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\bin\Debug\CrawDataShoes.exe
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\bin\Debug\CrawDataShoes.pdb
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\bin\Debug\SeleniumExtras.WaitHelpers.dll
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\bin\Debug\WebDriver.dll
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\bin\Debug\WebDriver.xml
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\MainWindow.g.cs
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\App.g.cs
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\CrawDataShoes_MarkupCompile.cache
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\CrawDataShoes_MarkupCompile.lref
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\MainWindow.baml
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\CrawDataShoes.g.resources
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\CrawDataShoes.Properties.Resources.resources
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\CrawDataShoes.csproj.GenerateResource.Cache
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\CrawDataShoes.exe
+D:\HaiNguyen\Code\CrawDataShoes\CrawDataShoes\obj\Debug\CrawDataShoes.pdb

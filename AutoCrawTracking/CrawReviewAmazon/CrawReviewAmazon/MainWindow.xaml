@@ -1,0 +1,43 @@
+﻿<Window x:Class="CrawReviewAmazon.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrawReviewAmazon"
+        mc:Ignorable="d"
+        Closed="Window_Closed"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="ThreeDBorderWindow"
+        Title="Merchize" Height="400" Width="600">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="7*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="9*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Height="25" IsReadOnly="True" Name="txtPath" Margin="10"></TextBox>
+                <Button Name="btnPath" 
+                        Click="Button_Click_1" 
+                        Content="Path" Grid.Column="1" Height="25" Width="60"></Button>
+            </Grid>
+            <Button Name="btnGet" Grid.Row="1" Click="Button_Click" Content="GET" Width="80" Height="25"></Button>
+            <RichTextBox 
+                IsReadOnly="True"
+                Name="rtbLog" 
+                Grid.Row="2" Margin="5">
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </RichTextBox.Resources>
+            </RichTextBox>
+        </Grid>
+    </Grid>
+</Window>

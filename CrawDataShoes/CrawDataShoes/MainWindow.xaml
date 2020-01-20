@@ -1,0 +1,28 @@
+﻿<Window x:Class="CrawDataShoes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrawDataShoes"
+        mc:Ignorable="d"
+        Width="600"
+        Closed="Window_Closed"
+        Height="400"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="Hải cute">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox 
+            Margin="10" 
+            TextWrapping="Wrap"
+            AcceptsReturn="True"
+            Name="txtLink">
+        </TextBox>
+        <Button Click="btnRun_Click" Name="btnRun" Grid.Row="2" Content="Run" Width="80" Height="25"></Button>
+    </Grid>
+</Window>

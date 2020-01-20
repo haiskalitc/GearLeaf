@@ -1,0 +1,13 @@
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\bin\Debug\ToolCorazonDeMeLao.exe.config
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\bin\Debug\ToolCorazonDeMeLao.exe
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\bin\Debug\ToolCorazonDeMeLao.pdb
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\MainWindow.g.cs
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\App.g.cs
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\ToolCorazonDeMeLao_MarkupCompile.cache
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\ToolCorazonDeMeLao_MarkupCompile.lref
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\MainWindow.baml
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\ToolCorazonDeMeLao.g.resources
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\ToolCorazonDeMeLao.Properties.Resources.resources
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\ToolCorazonDeMeLao.csproj.GenerateResource.Cache
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\ToolCorazonDeMeLao.exe
+D:\HaiNguyen\Code\ToolCorazonDeMeLao\ToolCorazonDeMeLao\obj\Debug\ToolCorazonDeMeLao.pdb

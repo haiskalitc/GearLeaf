@@ -1,0 +1,17 @@
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\bin\Debug\PhanLoaiAnh.exe.config
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\MainWindow.g.cs
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\App.g.cs
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh_Content.g.cs
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh_MarkupCompile.cache
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh_MarkupCompile.lref
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\bin\Debug\PhanLoaiAnh.exe
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\bin\Debug\PhanLoaiAnh.pdb
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\bin\Debug\EntityFramework.dll
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\bin\Debug\EntityFramework.xml
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\MainWindow.baml
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.g.resources
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.Properties.Resources.resources
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.csproj.GenerateResource.Cache
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.exe
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.pdb
+D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.csprojResolveAssemblyReference.cache
