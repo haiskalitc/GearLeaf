@@ -7,6 +7,7 @@
     <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="text" Nullable="false" />
     <Property Name="Description" Type="text" />
+    <Property Name="SizeChart" Type="text" />
   </EntityType>
   <EntityType Name="Colors">
     <Key>

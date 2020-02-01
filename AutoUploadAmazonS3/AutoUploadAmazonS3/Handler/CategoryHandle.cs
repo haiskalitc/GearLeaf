@@ -9,7 +9,7 @@ namespace Handler
 {
     public class CategoryHandle
     {
-        public mainEntities db = new mainEntities();
+        public Entities db = new Entities();
         private CategoryHandle()
         {
         }

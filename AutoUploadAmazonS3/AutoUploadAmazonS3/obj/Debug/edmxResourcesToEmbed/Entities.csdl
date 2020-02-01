@@ -7,6 +7,7 @@
     <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SizeChart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Color">
     <Key>
@@ -31,7 +32,7 @@
     <Property Name="IdCategories" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="mainEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Colors" EntityType="Self.Color" />
     <EntitySet Name="Counts" EntityType="Self.Count" />

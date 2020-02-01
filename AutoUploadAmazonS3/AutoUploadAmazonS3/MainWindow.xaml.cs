@@ -39,6 +39,8 @@ namespace AutoUploadAmazonS3
         {
             InitializeComponent();
             cbbLoaiSanPham.ItemsSource = Handler.CategoryHandle.getInstance.GetList();
+            btnEditSize.IsEnabled = true;
+            btnSaveSize.IsEnabled = false;
             // KhoiTaoDes();
             var id = CountHandle.getInstance.FindElementsById(1);
             if (id != null)
@@ -106,48 +108,76 @@ namespace AutoUploadAmazonS3
         //    browser.LoadHtml(stringBuilder.ToString());
         //}
         #endregion
-        public void KhoiTaoDanhSachMau()
-        {
-            var ds = Handler.ColorsHandle.getInstance.GetList();
-            if (ds.Count() > 0)
-            {
-                try
-                {
-                    var bc = new BrushConverter();
-                    foreach (var item in ds)
-                    {
-                        System.Windows.Controls.CheckBox check = new System.Windows.Controls.CheckBox()
-                        {
-                            Margin = new Thickness(5),
-                            Content = item.Name,
-                            Foreground = System.Windows.Media.Brushes.Black,
-                            Background = (System.Windows.Media.Brush)bc.ConvertFrom(item.Hexa),
+        //public void KhoiTaoDanhSachMau()
+        //{
+        //    var ds = Handler.ColorsHandle.getInstance.GetList();
+        //    if (ds.Count() > 0)
+        //    {
+        //        try
+        //        {
+        //            var bc = new BrushConverter();
+        //            foreach (var item in ds)
+        //            {
+        //                System.Windows.Controls.CheckBox check = new System.Windows.Controls.CheckBox()
+        //                {
+        //                    Margin = new Thickness(5),
+        //                    Content = item.Name,
+        //                    Foreground = System.Windows.Media.Brushes.Black,
+        //                    Background = (System.Windows.Media.Brush)bc.ConvertFrom(item.Hexa),
 
-                        };
-                        if (check != null)
-                        {
-                            dsMau.Children.Add(check);
-                        }
-                    }
-                }
-                catch
-                {
-                }
-                finally
-                {
-                    GC.Collect();
-                }
-            }
-        }
+        //                };
+        //                if (check != null)
+        //                {
+        //                    dsMau.Children.Add(check);
+        //                }
+        //            }
+        //        }
+        //        catch
+        //        {
+        //        }
+        //        finally
+        //        {
+        //            GC.Collect();
+        //        }
+        //    }
+        //}
 
         private void cbbLoaiSanPham_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 danhSachSize.Children.Clear();
+                stackSizeChart.Children.Clear();
                 var item = cbbLoaiSanPham.SelectedItem as Category;
                 if (item != null)
                 {
+                    // SIze chart
+                    var dsSizeChart = item.SizeChart.Split(',');
+                    if (dsSizeChart.Count() > 0)
+                    {
+                        //
+                        foreach (var itemSize in dsSizeChart)
+                        {
+                            var itemTextSize = new System.Windows.Controls.TextBox()
+                            {
+                                Width = 300,
+                                Height = 30,
+                                Text = itemSize
+                            };
+                            var stack = new StackPanel()
+                            {
+                                Orientation = System.Windows.Controls.Orientation.Horizontal,
+                                Margin = new Thickness(0, 10, 0, 0)
+                                
+                            };
+                            stack.Children.Add(itemTextSize);
+                            if (stack != null)
+                            {
+                                stackSizeChart.Children.Add(stack);
+                            }
+                        }
+                    }
+
                     txtDes.Text = item.Description;
                     if (item.Name.Contains("Tumbler") && item.Name.Contains("Music Box"))
                     {
@@ -168,6 +198,7 @@ namespace AutoUploadAmazonS3
                         {
                             Text = "0",
                             Width = 80,
+                            IsEnabled = false,
                             Height = 25,
                             VerticalAlignment = System.Windows.VerticalAlignment.Center
                         };
@@ -216,6 +247,7 @@ namespace AutoUploadAmazonS3
                                             System.Windows.Controls.TextBox text = new System.Windows.Controls.TextBox()
                                             {
                                                 Text = contentLabel[2],
+                                                IsEnabled = false,
                                                 Width = 80,
                                                 Height = 20,
                                                 VerticalAlignment = System.Windows.VerticalAlignment.Center
@@ -260,6 +292,7 @@ namespace AutoUploadAmazonS3
                                         System.Windows.Controls.TextBox text = new System.Windows.Controls.TextBox()
                                         {
                                             Text = contentLabel[2],
+                                            IsEnabled = false,
                                             Width = 80,
                                             Height = 25,
                                             VerticalAlignment = System.Windows.VerticalAlignment.Center
@@ -291,6 +324,7 @@ namespace AutoUploadAmazonS3
                                         };
                                         System.Windows.Controls.TextBox text = new System.Windows.Controls.TextBox()
                                         {
+                                            IsEnabled = false,
                                             Text = contentLabel[1],
                                             Width = 80,
                                             Height = 25,
@@ -527,7 +561,7 @@ namespace AutoUploadAmazonS3
                                 IsFeatured = "0",
                                 VisibilityInCatalog = "visible",
                                 ShortDescription = "",
-                                Description = txtDes.Text,
+                                Description = itemFile.Name.Replace(".jpeg", "").Replace(".png", "")  + Environment.NewLine + txtDes.Text,
                                 DataSalePriceStarts = "",
                                 DataSalePriceEnds = "",
                                 TaxStatus = "taxable",
@@ -547,7 +581,7 @@ namespace AutoUploadAmazonS3
                                 Categories = itemFolder.Name,
                                 Tags = "",
                                 ShippingClass = "",
-                                Images = URL,
+                                Images = URL + ", " + GetLinkSizeChart(),
                                 Parent = "",
                                 GroupedProducts = "",
                                 Upsells = "",
@@ -611,61 +645,38 @@ namespace AutoUploadAmazonS3
                 GC.Collect();
             }
         }
-
-        #region My Chi
-        //public void LamBieng()
-        //{
-        //    using (CsvReader csv = new CsvReader(new StreamReader(@"C:\Users\Administrator\Downloads\wc-product-export-27-12-2019-1577456873566.csv"), true))
-        //    {
-        //        int fieldCount = csv.FieldCount;
-
-        //        string[] headers = csv.GetFieldHeaders();
-        //        string s = "";
-
-        //        for (int i = 0; i < headers.Length - 1; i++)
-        //        {
-        //            s += "row1.CreateCell(" + i + ").SetCellValue(\"" + headers[i] + "\");" + Environment.NewLine;
-        //        }
-        //        while (csv.ReadNextRecord())
-        //        {
-        //        }
-        //    }
-        //}
-        #endregion
-
         private void trvFiles_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            dsAnh.Children.Clear();
-            var item = trvFiles.SelectedItem as Folder;
-            if (item != null)
-            {
-                if (item.Files.Count > 0)
-                {
-                    foreach (var size in item.Files)
-                    {
-                        try
-                        {
-                            var itemImage = size as FileInfo;
-                            if (itemImage.FullName.Contains(".jpeg") || itemImage.FullName.Contains(".png"))
-                            {
-                                System.Windows.Controls.Image image = new System.Windows.Controls.Image()
-                                {
-                                    Width = 80,
-                                    Height = 80,
-                                    Margin = new Thickness(5),
-                                    Source = new BitmapImage(new Uri(itemImage.FullName, UriKind.RelativeOrAbsolute))
-                                };
-                                dsAnh.Children.Add(image);
-                            }
-                        }
-                        catch { }
-                        finally
-                        {
-                            GC.Collect();
-                        }
-                    }
-                }
-            }
+            //var item = trvFiles.SelectedItem as Folder;
+            //if (item != null)
+            //{
+            //    if (item.Files.Count > 0)
+            //    {
+            //        foreach (var size in item.Files)
+            //        {
+            //            try
+            //            {
+            //                var itemImage = size as FileInfo;
+            //                if (itemImage.FullName.Contains(".jpeg") || itemImage.FullName.Contains(".png"))
+            //                {
+            //                    System.Windows.Controls.Image image = new System.Windows.Controls.Image()
+            //                    {
+            //                        Width = 80,
+            //                        Height = 80,
+            //                        Margin = new Thickness(5),
+            //                        Source = new BitmapImage(new Uri(itemImage.FullName, UriKind.RelativeOrAbsolute))
+            //                    };
+            //                    dsAnh.Children.Add(image);
+            //                }
+            //            }
+            //            catch { }
+            //            finally
+            //            {
+            //                GC.Collect();
+            //            }
+            //        }
+            //    }
+            //}
         }
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
@@ -729,37 +740,6 @@ namespace AutoUploadAmazonS3
                         txtDes.Text = "";
                         trvFiles.DataContext = dsFolder;
                         System.Windows.MessageBox.Show("Thêm thành công " + ds.Name);
-                        string size = "";
-                        foreach (var item in danhSachSize.Children)
-                        {
-                            var stack = item as StackPanel;
-                            if (stack != null)
-                            {
-                                var itemCheck = stack.Children[0] as System.Windows.Controls.CheckBox;
-                                var itemText = stack.Children[1] as System.Windows.Controls.TextBox;
-                                if (itemCheck != null && itemText != null)
-                                {
-                                    if (itemCheck.Content.ToString().Trim().Equals("US12 (EU45)") || itemCheck.Content.ToString().Trim().Equals("US5 (EU37.5)")
-                                        || itemCheck.Content.ToString().Trim().Equals("US6 (EU39)"))
-                                    {
-                                        size += itemCheck.Content + " " + itemText.Text + "|";
-
-                                    }
-                                    else
-                                    {
-                                        size += itemCheck.Content + " " + itemText.Text + ", ";
-                                    }
-                                }
-                            }
-                        }
-                        if (!String.IsNullOrEmpty(size))
-                        {
-                            var item = cbbLoaiSanPham.SelectedItem as Category;
-                            if (item != null)
-                            {
-                                SizeHandle.getInstance.Update(item.Id.ToString(), size);
-                            }
-                        }
                     }
                     else
                     {
@@ -1074,5 +1054,177 @@ namespace AutoUploadAmazonS3
                 GC.Collect();
             }
             }
+
+        private void btnResetId_Click(object sender, RoutedEventArgs e)
+        {
+            if (CountHandle.getInstance.Update(1, 1) > 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Reset Id thành công");
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Reset Id thất bại");
+            }
         }
+
+        private void btnEditSize_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in danhSachSize.Children)
+            {
+                var stack = item as StackPanel;
+                if (stack != null)
+                {
+                    var itemCheck = stack.Children[0] as System.Windows.Controls.CheckBox;
+                    var itemText = stack.Children[1] as System.Windows.Controls.TextBox;
+                    if (itemCheck != null && itemText != null)
+                    {
+                        itemText.IsEnabled = true;
+                    }
+                }
+            }
+            btnEditSize.IsEnabled = false;
+            btnSaveSize.IsEnabled = true;
+        }
+
+        private void btnSaveSize_Click(object sender, RoutedEventArgs e)
+        {
+            string size = "";
+            foreach (var item in danhSachSize.Children)
+            {
+                var stack = item as StackPanel;
+                if (stack != null)
+                {
+                    var itemCheck = stack.Children[0] as System.Windows.Controls.CheckBox;
+                    var itemText = stack.Children[1] as System.Windows.Controls.TextBox;
+                    if (itemCheck != null && itemText != null)
+                    {
+                        if (itemCheck.Content.ToString().Trim().Equals("US12 (EU45)") || itemCheck.Content.ToString().Trim().Equals("US5 (EU37.5)")
+                            || itemCheck.Content.ToString().Trim().Equals("US6 (EU39)"))
+                        {
+                            size += itemCheck.Content + " " + itemText.Text + "|";
+
+                        }
+                        else
+                        {
+                            size += itemCheck.Content + " " + itemText.Text + ", ";
+                        }
+                        itemText.IsEnabled = false;
+                    }
+                }
+            }
+            if (!String.IsNullOrEmpty(size))
+            {
+                var item = cbbLoaiSanPham.SelectedItem as Category;
+                if (item != null)
+                {
+                    if (SizeHandle.getInstance.Update(item.Id.ToString(), size) > 0)
+                    {
+                        System.Windows.MessageBox.Show("Cập nhật giá thành công");
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Cập nhật giá thất bại");
+                    }
+                }
+            }
+            btnEditSize.IsEnabled = true;
+            btnSaveSize.IsEnabled = false;
+        }
+
+        private void btnAddNewSize_Click(object sender, RoutedEventArgs e)
+        {
+            var itemTextSize = new System.Windows.Controls.TextBox()
+            {
+                Width = 200,
+                Height = 30,
+                Text = ""
+            };
+            var itemButtonDel = new System.Windows.Controls.Button()
+            {
+                Width = 40,
+                Height = 30,
+                Content = "Xóa",
+                Margin = new Thickness(15, 0, 0, 0),
+            };
+            var stack = new StackPanel()
+            {
+                Orientation = System.Windows.Controls.Orientation.Horizontal,
+                Margin = new Thickness(0, 10, 0, 0)
+
+            };
+            stack.Children.Add(itemTextSize);
+            stack.Children.Add(itemButtonDel);
+            if (stack != null)
+            {
+                stackSizeChart.Children.Add(stack);
+                btnSaveSizeImg.IsEnabled = true;
+            }
+        }
+
+        private void btnSaveSizeImg_Click(object sender, RoutedEventArgs e)
+        {
+            string size = "";
+            foreach (var item in stackSizeChart.Children)
+            {
+                var stack = item as StackPanel;
+                if (stack != null)
+                {
+                    var itemText = stack.Children[0] as System.Windows.Controls.TextBox;
+                    if (itemText != null)
+                    {
+                        if (!String.IsNullOrEmpty(size))
+                        {
+                            size += ",";
+                        }
+                        size += itemText.Text;
+                    }
+                }
+            }
+            if (!String.IsNullOrEmpty(size))
+            {
+                var item = cbbLoaiSanPham.SelectedItem as Category;
+                if (item != null)
+                {
+                    if (SizeHandle.getInstance.UpdateSize(item.Id, size) > 0)
+                    {
+                        System.Windows.MessageBox.Show("Cập size chart thành công");
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Cập nhật size chart thất bại");
+                    }
+                }
+            }
+
+        }
+        public string GetLinkSizeChart()
+        {
+            string size = "";
+            foreach (var item in stackSizeChart.Children)
+            {
+                var stack = item as StackPanel;
+                if (stack != null)
+                {
+                    var itemText = stack.Children[0] as System.Windows.Controls.TextBox;
+                    if (itemText != null)
+                    {
+                        if (!String.IsNullOrEmpty(itemText.Text))
+                        {
+                            if (!String.IsNullOrEmpty(size))
+                            {
+                                size += ",";
+                            }
+                            size += itemText.Text;
+                        }
+                    }
+                }
+            }
+            return size;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
+    }
 }

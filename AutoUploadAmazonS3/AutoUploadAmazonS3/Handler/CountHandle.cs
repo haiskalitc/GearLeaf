@@ -9,7 +9,7 @@ namespace Handler
 {
     public class CountHandle
     {
-        public mainEntities db = new mainEntities();
+        public Entities db = new Entities();
         private CountHandle()
         {
         }
@@ -39,7 +39,7 @@ namespace Handler
             }
         }
 
-        public void Update(long newValue, long id)
+        public int Update(long newValue, long id)
         {
             try
             {
@@ -49,11 +49,14 @@ namespace Handler
                     item.Count1 = newValue;
                     if (db.SaveChanges() > 0)
                     {
+                        return 1;
                     }
                 }
+                return -1;
             }
             catch (Exception ex)
             {
+                return -1;
             }
         }
     }

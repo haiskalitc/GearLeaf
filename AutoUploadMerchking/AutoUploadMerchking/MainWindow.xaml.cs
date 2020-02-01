@@ -106,40 +106,6 @@ namespace AutoUploadAmazonS3
         //    browser.LoadHtml(stringBuilder.ToString());
         //}
         #endregion
-        public void KhoiTaoDanhSachMau()
-        {
-            var ds = Handler.ColorsHandle.getInstance.GetList();
-            if (ds.Count() > 0)
-            {
-                try
-                {
-                    var bc = new BrushConverter();
-                    foreach (var item in ds)
-                    {
-                        System.Windows.Controls.CheckBox check = new System.Windows.Controls.CheckBox()
-                        {
-                            Margin = new Thickness(5),
-                            Content = item.Name,
-                            Foreground = System.Windows.Media.Brushes.Black,
-                            Background = (System.Windows.Media.Brush)bc.ConvertFrom(item.Hexa),
-
-                        };
-                        if (check != null)
-                        {
-                            dsMau.Children.Add(check);
-                        }
-                    }
-                }
-                catch
-                {
-                }
-                finally
-                {
-                    GC.Collect();
-                }
-            }
-        }
-
         private void cbbLoaiSanPham_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -348,18 +314,26 @@ namespace AutoUploadAmazonS3
             {
                 foreach (Folder itemFolder in folder.SubFolders)
                 {
+                    string _folderName = GetName(folder.Name);
                     if (itemFolder.Files.Count > 0)
                     {
-                        foreach (FileInfo itemFile in itemFolder.Files)
                         {
                             // Task.Run(() => 
                             //{
                             //    UploadFileMPUHighLevelAPI.UploadFile(itemFile.FullName);
                             //});   
-                            string URL = txtServer.Text.Trim() + folder.Name.Replace(" ", "%20") + "/"
-                                                                                     + itemFolder.Name.Replace(" ", "%20") + "/"
-                                                                                     + itemFile.Name.Replace(" ", "%20");//+ 3D % 20Hoodie / Alabama / Alabama % 203D % 20Hoodie % 20ABC13113074.jpeg
-                            dsLink.Add(itemFile.FullName);
+                            string URL = "";
+                            foreach (FileInfo itemFileUrl in itemFolder.Files)
+                            {
+                                if (!String.IsNullOrEmpty(URL))
+                                {
+                                    URL += ", ";
+                                }
+                               URL += txtServer.Text.Trim() + _folderName.Replace(" ", "%20") + "/"
+                                                                                     + GetName(itemFolder.Name).Replace(" ", "%20") + "/"
+                                                                                     + (itemFileUrl.Name).Replace(" ", "%20");//+ 3
+                            }
+                            //dsLink.Add(itemFile.FullName);
                             string IdParent = ID_.ToString();
                             string size = "";
                             var Gender = "Men";
@@ -380,7 +354,7 @@ namespace AutoUploadAmazonS3
                                             if (itemText != null)
                                             {
                                                 ID_++;
-                                                if (folder.Name.Contains("Sneaker"))
+                                                if (_folderName.Contains("Sneaker"))
                                                 {
                                                     //US5 (EU37.5)
                                                     if (itemCheck.Content.ToString().Trim().Equals("US12 (EU45)") || itemCheck.Content.ToString().Trim().Equals("US5 (EU37.5)")
@@ -393,7 +367,7 @@ namespace AutoUploadAmazonS3
                                                     {
                                                         ID = ID_.ToString(),
                                                         Type = "variation",
-                                                        Name = itemFile.Name.Replace(".jpeg", "").Replace(".png", "") + " - " + Gender + ", " + itemCheck.Content.ToString(),
+                                                        Name = GetName(itemFolder.Name).Replace(".jpeg", "").Replace(".png", "") + " - " + Gender + ", " + itemCheck.Content.ToString(),
                                                         Published = "1",
                                                         IsFeatured = "0",
                                                         VisibilityInCatalog = "visible",
@@ -447,13 +421,13 @@ namespace AutoUploadAmazonS3
                                                         }
                                                     }
                                                 }
-                                                else if (!folder.Name.Contains("Tumbler") && !folder.Name.Contains("Music Box"))
+                                                else if (!_folderName.Contains("Tumbler") && !_folderName.Contains("Music Box"))
                                                 {
                                                     var exportChild = new Export()
                                                     {
                                                         ID = ID_.ToString(),
                                                         Type = "variation",
-                                                        Name = itemFile.Name.Replace(".jpeg", "").Replace(".png", "") + " - " + itemCheck.Content.ToString(),
+                                                        Name = GetName(itemFolder.Name).Replace(".jpeg", "").Replace(".png", "") + " - " + itemCheck.Content.ToString(),
                                                         Published = "1",
                                                         IsFeatured = "0",
                                                         VisibilityInCatalog = "visible",
@@ -522,7 +496,7 @@ namespace AutoUploadAmazonS3
                             {
                                 ID = IdParent,
                                 Type = "variable",
-                                Name = itemFile.Name.Replace(".jpeg", "").Replace(".png", ""),
+                                Name = GetName(itemFolder.Name).Replace(".jpeg", "").Replace(".png", ""),
                                 Published = "1",
                                 IsFeatured = "0",
                                 VisibilityInCatalog = "visible",
@@ -543,8 +517,8 @@ namespace AutoUploadAmazonS3
                                 AllowCustomerReviews = "1",
                                 PurchaseNote = "",
                                 SalePrice = "",
-                                RegularPrice = (folder.Name.Contains("Tumbler") || folder.Name.Contains("Music Box")) ? Tumbler : "",
-                                Categories = itemFolder.Name,
+                                RegularPrice = (_folderName.Contains("Tumbler") || _folderName.Contains("Music Box")) ? Tumbler : "",
+                                Categories = GetName(itemFolder.Name),
                                 Tags = "",
                                 ShippingClass = "",
                                 Images = URL,
@@ -557,21 +531,21 @@ namespace AutoUploadAmazonS3
                                 Position = "0",
                                 SwatchesAttributes = "",
                                 Attribute1Global = "0",
-                                Attribute1Name = folder.Name.Contains("Sneaker") ? "Style" : "Size",
-                                Attribute1Value = folder.Name.Contains("Sneaker") ? "Men, Women" : size,
+                                Attribute1Name = _folderName.Contains("Sneaker") ? "Style" : "Size",
+                                Attribute1Value = _folderName.Contains("Sneaker") ? "Men, Women" : size,
                                 Attribute1Visible = "1",
                                 Attribute2Value = size,
                                 Attribute2Global = "0",
                                 Attribute2Name = "Size",
                                 Attribute2Visible = "1"
                             };
-                            if (!folder.Name.Contains("Tumbler") && !folder.Name.Contains("Music Box"))
+                            if (!_folderName.Contains("Tumbler") && !_folderName.Contains("Music Box"))
                             {
                                 if (dsChildRen.Count > 0 && export != null)
                                 {
                                     ds.Add(export);
                                     ds.AddRange(dsChildRen);
-                                    if (folder.Name.Contains("Sneaker"))
+                                    if (_folderName.Contains("Sneaker"))
                                     {
                                         if (dsChildRenWomen.Count > 0)
                                         {
@@ -589,10 +563,12 @@ namespace AutoUploadAmazonS3
                         }
                     }
                 }
+
+
                 CountHandle.getInstance.Update(ID_, 1);
                 return new RootExport()
                 {
-                    Name = folder.Name,
+                    Name = (folder.Name),
                     DanhSach = ds,
                     Link = dsLink
                 };
@@ -601,7 +577,7 @@ namespace AutoUploadAmazonS3
             {
                 return new RootExport()
                 {
-                    Name = folder.Name,
+                    Name = (folder.Name),
                     DanhSach = ds,
                     Link = dsLink
                 };
@@ -633,40 +609,6 @@ namespace AutoUploadAmazonS3
         //}
         #endregion
 
-        private void trvFiles_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            dsAnh.Children.Clear();
-            var item = trvFiles.SelectedItem as Folder;
-            if (item != null)
-            {
-                if (item.Files.Count > 0)
-                {
-                    foreach (var size in item.Files)
-                    {
-                        try
-                        {
-                            var itemImage = size as FileInfo;
-                            if (itemImage.FullName.Contains(".jpeg") || itemImage.FullName.Contains(".png"))
-                            {
-                                System.Windows.Controls.Image image = new System.Windows.Controls.Image()
-                                {
-                                    Width = 80,
-                                    Height = 80,
-                                    Margin = new Thickness(5),
-                                    Source = new BitmapImage(new Uri(itemImage.FullName, UriKind.RelativeOrAbsolute))
-                                };
-                                dsAnh.Children.Add(image);
-                            }
-                        }
-                        catch { }
-                        finally
-                        {
-                            GC.Collect();
-                        }
-                    }
-                }
-            }
-        }
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -706,7 +648,7 @@ namespace AutoUploadAmazonS3
                     System.Windows.MessageBox.Show("Chưa có dữ liệu");
                 }
             }
-            catch(Exception ecx)
+            catch (Exception ecx)
             {
             }
             finally
@@ -778,158 +720,21 @@ namespace AutoUploadAmazonS3
             }
         }
 
-        private async void btnResize_Click(object sender, RoutedEventArgs e)
+        public string GetName(string name)
         {
-            try
+            string re = "";
+            var ar = name.Split(' ');
+            for (int i = 0; i < ar.Length - 1; i++)
             {
-                System.Windows.Forms.FolderBrowserDialog folderDlg = new System.Windows.Forms.FolderBrowserDialog();
-                folderDlg.ShowNewFolderButton = true;
-                // Show the FolderBrowserDialog.  
-                DialogResult result = folderDlg.ShowDialog();
-                if (result == System.Windows.Forms.DialogResult.OK)
+                if (!String.IsNullOrEmpty(re))
                 {
-                    var flder = new Folder(folderDlg.SelectedPath);
-                    if (flder != null)
-                    {
-                        btnResize.IsEnabled = false;
-                        string root = flder.FullPath + "_Resize";
-                        if (!Directory.Exists(root))
-                        {
-                            Directory.CreateDirectory(root);
-                        }
-                        await Task.Run(() =>
-                        {
-                            foreach (Folder itemFolderProduct in flder.SubFolders)
-                            {
-                                string rootProduct = root + "\\" + itemFolderProduct.Name;
-                                if (!Directory.Exists(rootProduct))
-                                {
-                                    Directory.CreateDirectory(rootProduct);
-                                }
-                                foreach (Folder itemFolderCollection in itemFolderProduct.SubFolders)
-                                {
-                                    string rootCollection = rootProduct + "\\" + itemFolderCollection.Name;
-                                    if (!Directory.Exists(rootCollection))
-                                    {
-                                        Directory.CreateDirectory(rootCollection);
-                                    }
-
-                                    foreach (FileInfo file in itemFolderCollection.Files)
-                                    {
-                                        try
-                                        {
-                                            //ReduceImage(rootCollection + "\\" + file.Name, file.FullName);
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            Console.WriteLine(ex.Message);
-                                        }
-                                        finally
-                                        {
-                                            GC.Collect();
-                                        }
-                                    }
-                                }
-                            }
-                        });
-
-                        System.Windows.MessageBox.Show("Resize thành công!!");
-                        btnResize.IsEnabled = false;
-                    }
-                    else
-                    {
-                        btnResize.IsEnabled = true;
-                    }
+                    re += " ";
                 }
+                re += ar[i];
             }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show("Chưa chọn folder");
-                btnResize.IsEnabled = true;
-            }
-        }
-        public void Export(List<Export> dsRe, string name)
-        {
-            XSSFWorkbook wb = new XSSFWorkbook();
-            ISheet sheet = wb.CreateSheet();
-            var row1 = sheet.CreateRow(0);
-            row1.CreateCell(0).SetCellValue("ID");
-            row1.CreateCell(1).SetCellValue("Type");
-            row1.CreateCell(2).SetCellValue("SKU");
-            row1.CreateCell(3).SetCellValue("Name");
-            row1.CreateCell(4).SetCellValue("Published");
-            row1.CreateCell(5).SetCellValue("Is featured?");
-            row1.CreateCell(6).SetCellValue("Visibility in catalog");
-            row1.CreateCell(7).SetCellValue("Short description");
-            row1.CreateCell(8).SetCellValue("Description");
-            row1.CreateCell(9).SetCellValue("Date sale price starts");
-            row1.CreateCell(10).SetCellValue("Date sale price ends");
-            row1.CreateCell(11).SetCellValue("Tax status");
-            row1.CreateCell(12).SetCellValue("Tax class");
-            row1.CreateCell(13).SetCellValue("In stock?");
-            row1.CreateCell(14).SetCellValue("Stock");
-            row1.CreateCell(15).SetCellValue("Low stock amount");
-            row1.CreateCell(16).SetCellValue("Backorders allowed?");
-            row1.CreateCell(17).SetCellValue("Sold individually?");
-            row1.CreateCell(18).SetCellValue("Weight (lbs)");
-            row1.CreateCell(19).SetCellValue("Length (cm)");
-            row1.CreateCell(20).SetCellValue("Width (cm)");
-            row1.CreateCell(21).SetCellValue("Height (cm)");
-            row1.CreateCell(22).SetCellValue("Allow customer reviews?");
-            row1.CreateCell(23).SetCellValue("Purchase note");
-            row1.CreateCell(24).SetCellValue("Sale price");
-            row1.CreateCell(25).SetCellValue("Regular price");
-            row1.CreateCell(26).SetCellValue("Categories");
-            row1.CreateCell(27).SetCellValue("Tags");
-            row1.CreateCell(28).SetCellValue("Shipping class");
-            row1.CreateCell(29).SetCellValue("Images");
-            row1.CreateCell(30).SetCellValue("Download limit");
-            row1.CreateCell(31).SetCellValue("Download expiry days");
-            row1.CreateCell(32).SetCellValue("Parent");
-            row1.CreateCell(33).SetCellValue("Grouped products");
-            row1.CreateCell(34).SetCellValue("Upsells");
-            row1.CreateCell(35).SetCellValue("Cross-sells");
-            row1.CreateCell(36).SetCellValue("External URL");
-            row1.CreateCell(37).SetCellValue("Button text");
-            row1.CreateCell(38).SetCellValue("Position");
-            row1.CreateCell(39).SetCellValue("Swatches Attributes");
-            if (name != "Tumbler" && name != "Music Box")
-            {
+            return re;
+        } 
 
-                row1.CreateCell(40).SetCellValue("Attribute 1 name");
-                row1.CreateCell(41).SetCellValue("Attribute 1 value(s)");
-                row1.CreateCell(42).SetCellValue("Attribute 1 visible");
-                row1.CreateCell(43).SetCellValue("Attribute 1 global");
-
-                if (name.Contains("Sneaker"))
-                {
-                    row1.CreateCell(44).SetCellValue("Attribute 2 name");
-                    row1.CreateCell(45).SetCellValue("Attribute 2 value(s)");
-                    row1.CreateCell(46).SetCellValue("Attribute 2 visible");
-                    row1.CreateCell(47).SetCellValue("Attribute 2 global");
-                }
-            }
-
-            int rowIndex = 1;
-            foreach (var item in dsRe)
-            {
-                try
-                {
-                    var newRow = sheet.CreateRow(rowIndex);
-                    FillToRow(item, newRow, name);
-                    rowIndex++;
-                }
-                catch(Exception ex)
-                {
-                }
-                finally
-                {
-                    GC.Collect();
-                }
-            }
-            FileStream fs = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\" + name + " " + RandomString(5) + " " + DateTime.Now.ToLongDateString() + ".xlsx", FileMode.CreateNew);
-            wb.Write(fs);
-        }
         private static Random random = new Random();
         public static string RandomString(int length)
         {
@@ -937,142 +742,10 @@ namespace AutoUploadAmazonS3
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public void FillToRow(Export ex, IRow row, string name)
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                //Id
-                row.CreateCell(0).SetCellValue(ex.ID);
-                //Type
-                row.CreateCell(1).SetCellValue(ex.Type);
-                //SKU
-                row.CreateCell(2).SetCellValue(ex.SKU);
-                //Name
-                row.CreateCell(3).SetCellValue(ex.Name);
-                //Published
-                row.CreateCell(4).SetCellValue(ex.Published);
-                //Is featured?
-                row.CreateCell(5).SetCellValue(ex.IsFeatured);
-                //Visibility in catalog
-                row.CreateCell(6).SetCellValue(ex.VisibilityInCatalog);
-                //Short description
-                row.CreateCell(7).SetCellValue(ex.ShortDescription);
-                //Description
-                row.CreateCell(8).SetCellValue(ex.Description);
-                //Date sale price starts
-                row.CreateCell(9).SetCellValue(ex.DataSalePriceStarts);
-                //Date sale price ends
-                row.CreateCell(10).SetCellValue(ex.DataSalePriceEnds);
-                //Tax status
-                row.CreateCell(11).SetCellValue(ex.TaxStatus);
-                //Tax class
-                row.CreateCell(12).SetCellValue(ex.TaxClass);
-                //In stock?
-                row.CreateCell(13).SetCellValue(ex.InStock);
-                //Stock
-                row.CreateCell(14).SetCellValue(ex.Stock);
-                //Low stock amount
-                row.CreateCell(15).SetCellValue(ex.LowStockAmount);
-                //Backorders allowed?
-                row.CreateCell(16).SetCellValue(ex.BackordersAllowed);
-                //Sold individually?
-                row.CreateCell(17).SetCellValue(ex.SoldIndividually);
-                //Weight (lbs)
-                row.CreateCell(18).SetCellValue(ex.Weight);
-                //Length (cm)
-                row.CreateCell(19).SetCellValue(ex.Length);
-
-                //Width (cm)
-                row.CreateCell(20).SetCellValue(ex.Width);
-
-                //Height (cm)
-                row.CreateCell(21).SetCellValue(ex.Height);
-
-
-                //Allow customer reviews?
-                row.CreateCell(22).SetCellValue(ex.AllowCustomerReviews);
-
-                //Purchase note
-                row.CreateCell(23).SetCellValue(ex.PurchaseNote);
-
-                row.CreateCell(24).SetCellValue(ex.SalePrice);
-
-                //Regular price
-                row.CreateCell(25).SetCellValue(ex.RegularPrice);
-
-                //Categories
-                row.CreateCell(26).SetCellValue(ex.Categories);
-
-                //Tags
-                row.CreateCell(27).SetCellValue(ex.Tags);
-
-                //Shipping class
-                row.CreateCell(28).SetCellValue(ex.ShippingClass);
-
-                //Images
-                row.CreateCell(29).SetCellValue(ex.Images);
-
-                //Download limit
-                row.CreateCell(30).SetCellValue(ex.DownloadLimit);
-
-                //Download expiry days
-                row.CreateCell(31).SetCellValue(ex.DownloadExpiryDays);
-
-                //Parent
-                row.CreateCell(32).SetCellValue(ex.Parent);
-
-                //Grouped products
-                row.CreateCell(33).SetCellValue(ex.GroupedProducts);
-
-                //Upsells
-                row.CreateCell(34).SetCellValue(ex.Upsells);
-
-                //Cross-sells
-                row.CreateCell(35).SetCellValue(ex.CrossSells);
-
-                //External URL
-                row.CreateCell(36).SetCellValue(ex.ExternalURL);
-
-                //Button text
-                row.CreateCell(37).SetCellValue(ex.ButtonText);
-
-                //Position
-                row.CreateCell(38).SetCellValue(ex.Position);
-
-                //SwatchesAttributes
-                row.CreateCell(39).SetCellValue(ex.SwatchesAttributes);
-
-
-
-                //Attribute 1 name
-                if (name != "Tumbler" || name != "Music Box")
-                {
-                    row.CreateCell(40).SetCellValue(ex.Attribute1Name);
-                }
-                //Attribute 1 value(s)
-                if (name != "Tumbler" || name != "Music Box")
-                    row.CreateCell(41).SetCellValue(ex.Attribute1Value);
-                //Attribute 1 visible
-                if (name != "Tumbler" || name != "Music Box")
-                    row.CreateCell(42).SetCellValue(ex.Attribute1Visible);
-                //Attribute 1 global
-                if (name != "Tumbler" || name != "Music Box")
-                    row.CreateCell(43).SetCellValue(ex.Attribute1Global);
-                if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
-                    row.CreateCell(44).SetCellValue(ex.Attribute2Name);
-                if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
-                    row.CreateCell(45).SetCellValue(ex.Attribute2Value);
-                if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
-                    row.CreateCell(46).SetCellValue(ex.Attribute2Visible);
-                if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
-                    row.CreateCell(47).SetCellValue(ex.Attribute2Global);
-            }
-            catch
-            { }
-            finally
-            {
-                GC.Collect();
-            }
-            }
+            CountHandle.getInstance.Update(1, 1);
         }
+    }
 }

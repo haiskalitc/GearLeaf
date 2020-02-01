@@ -1,6 +1,7 @@
 ﻿using AutoUploadAmazonS3;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Handler
 {
     public class SizeHandle
     {
-        public mainEntities db = new mainEntities();
+        public Entities db = new Entities();
         private SizeHandle()
         {
         }
@@ -39,7 +40,7 @@ namespace Handler
             }
         }
 
-        public void Update(string idCategory, string name)
+        public int Update(string idCategory, string name)
         {
             try
             {
@@ -47,11 +48,38 @@ namespace Handler
                 if (item != null)
                 {
                     item.Name = name;
-                    db.SaveChanges();
+                    if (db.SaveChanges() > 0)
+                    {
+                        return 1;
+                    }
                 }
+                return -1;
             }
             catch (Exception ex)
             {
+                return -1;
+            }
+        }
+
+        public int UpdateSize(long idCategory, string name)
+        {
+            try
+            {
+                var item = db.Categories.FirstOrDefault(model => model.Id.Equals(idCategory));
+                if (item != null)
+                {
+                    item.SizeChart = name;
+                    db.Entry(item).State = EntityState.Modified;
+                    if (db.SaveChanges() > 0)
+                    {
+                        return 1;
+                    }
+                }
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                return -1;
             }
         }
     }

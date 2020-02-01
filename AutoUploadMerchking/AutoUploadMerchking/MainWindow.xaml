@@ -14,16 +14,12 @@
             <ColumnDefinition Width="3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="8*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Margin="5">
+            <Grid Margin="5">
                 <GroupBox FontSize="15" Header="Khu vực chọn size">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="6*"></RowDefinition>
+                            <RowDefinition Height="9*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Margin="5">
                             <StackPanel Orientation="Vertical">
@@ -44,7 +40,7 @@
                         <Grid Grid.Row="1" Margin="5">
                             <ScrollViewer 
                                     VerticalScrollBarVisibility="Auto" 
-                                    ScrollViewer.CanContentScroll="True" Margin="-10,10,10,-10">
+                                    ScrollViewer.CanContentScroll="True">
                                 <StackPanel  Orientation="Vertical">
                                     <TextBlock FontSize="13" Text="Size"></TextBlock>
                                     <StackPanel Orientation="Vertical" Name="danhSachSize"></StackPanel>
@@ -55,63 +51,11 @@
                     </Grid>
                 </GroupBox>
             </Grid>
-            <Grid Grid.Row="1" Margin="5">
-                <GroupBox Header="Khu vực chọn màu" FontSize="15" Grid.Row="1">
-                    <WrapPanel Name="dsMau">
-                        
-                    </WrapPanel>
-                </GroupBox>
-            </Grid>
-            <!--<Grid Grid.Row="2" Margin="5">
-                <GroupBox Header="Khu vực chọn thuộc tính" FontSize="15" Grid.Row="1">
-                    <StackPanel Orientation="Vertical">
-                        <CheckBox Margin="10 5 0 0" Content="Free shipping"></CheckBox>
-                        <CheckBox Margin="10 5 0 0" Content="Hide from search engines"></CheckBox>
-                        <CheckBox Margin="10 5 0 0" Content="Add to home page"></CheckBox>
-                        <CheckBox Margin="10 5 0 0" Content="Hide from listening page"></CheckBox>
-                    </StackPanel>
-                </GroupBox>
-            </Grid>-->
-            <!--<Grid Grid.Row="3" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"></RowDefinition>
-                    <RowDefinition Height="6*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <GroupBox Margin="5" Grid.Row="0" FontSize="15" Header="Personalized this product"></GroupBox>
-                <GroupBox Margin="5" Grid.Row="1" FontSize="15" Header="Organization">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Vertical" Grid.Row="0">
-                            <TextBlock FontSize="13" Text="Collections"></TextBlock>
-                            <ComboBox Margin="0 5 0 0" SelectedIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock></TextBlock>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical" Grid.Row="1">
-                            <TextBlock FontSize="13" Text="Tags"></TextBlock>
-                            <TextBox Margin="0 5 0 0"></TextBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical" Grid.Row="2">
-                            <TextBlock FontSize="13" Text="Category"></TextBlock>
-                            <TextBox Margin="0 5 0 0"></TextBox>
-                        </StackPanel>
-                    </Grid>
-                </GroupBox>
-            </Grid>-->
         </Grid>
         <Grid Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="15*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -121,20 +65,10 @@
                     </Grid>
                 </GroupBox>
             </Grid>
-            <Grid Grid.Row="2">
-                <GroupBox FontSize="15" Header="Danh sách ảnh">
-                    <ScrollViewer Margin="5">
-                        <WrapPanel 
-                            ScrollViewer.CanContentScroll="True"
-                            ScrollViewer.VerticalScrollBarVisibility="Visible"
-                            Name="dsAnh"></WrapPanel>
-                    </ScrollViewer>
-                </GroupBox>
-            </Grid>
             <Grid Grid.Row="3">
                 <Button Name="btnExport" Click="btnExport_Click" Content="Export" Width="100" Height="30"></Button>
             </Grid>
-            <TextBox Height="25" Text="http://35.199.161.229/uploadcdn/Aquacozys/" Name="txtServer" Grid.Row="1" Margin="10 5 10 5"></TextBox>
+            <TextBox Text="http://35.199.161.229/uploadcdn/merchking/" FontSize="20" Height="35" Name="txtServer" Grid.Row="1" Margin="10 5 10 5"></TextBox>
         </Grid>
         <Grid Grid.Column="2" Margin="10">
             <Grid.RowDefinitions>
@@ -153,7 +87,6 @@
             </Grid>
             <Grid Grid.Row="1" Margin="4">
                 <TreeView 
-                    SelectedItemChanged="trvFiles_SelectedItemChanged"
                     Margin="0,0,0,0" Name="trvFiles">
                     <TreeViewItem
                         Name="trvItemFile" 
@@ -175,10 +108,9 @@
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-
                 </Grid.RowDefinitions>
-                <Button Grid.Row="0" Click="btnAdd_Click" Name="btnAdd" Content="Thêm" Width="100" Height="35"></Button>
-                <Button Grid.Row="1" Click="btnResize_Click" Name="btnResize" Content="Resize" Width="100" Height="35"></Button>
+                <Button VerticalAlignment="Center" Click="btnAdd_Click" Name="btnAdd" Content="Thêm" Width="100" Height="35"></Button>
+                <Button VerticalAlignment="Center" Grid.Row="1" Click="btnReset_Click" Name="btnReset" Content="Reset ID" Width="100" Height="35"></Button>
             </Grid>
         </Grid>
     </Grid>

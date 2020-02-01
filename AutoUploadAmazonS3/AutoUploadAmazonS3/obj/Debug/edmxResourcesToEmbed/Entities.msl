@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="mainEntities">
+  <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="Entities">
     <EntitySetMapping Name="Categories">
       <EntityTypeMapping TypeName="mainModel.Category">
         <MappingFragment StoreEntitySet="Categories">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SizeChart" ColumnName="SizeChart" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

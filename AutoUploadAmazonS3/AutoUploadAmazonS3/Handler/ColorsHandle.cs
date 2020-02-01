@@ -9,7 +9,7 @@ namespace Handler
 {
     public class ColorsHandle
     {
-        public mainEntities db = new mainEntities();
+        public Entities db = new Entities();
         private ColorsHandle()
         {
         }

@@ -13,21 +13,21 @@ namespace AutoUploadAmazonS3
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class mainEntities : DbContext
+    public partial class Entities : DbContext
     {
         private static string Config = "metadata=res://*/Entities.csdl|res://*/Entities.ssdl|res://*/Entities.msl;provider=Devart.Data.SQLite;provider connection string=data source=";
 
         public static string startupPath = Environment.CurrentDirectory + "\\Database\\amazon.db;";
-        public mainEntities()
-            : base(Config + startupPath)
-        {
+        public Entities()
+: base(Config + startupPath)
+{
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Count> Counts { get; set; }
