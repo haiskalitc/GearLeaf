@@ -58,6 +58,10 @@ namespace AutoUploadAmazonS3.Model
         public string Attribute2Visible { get; set; }
         public string Attribute2Global { get; set; }
         public string Attribute2Default { get; set; }
-
+        public string Attribute3Name { get; set; }
+        public string Attribute3Value { get; set; }
+        public string Attribute3Visible { get; set; }
+        public string Attribute3Global { get; set; }
+        public string Attribute3Default { get; set; }
     }
 }

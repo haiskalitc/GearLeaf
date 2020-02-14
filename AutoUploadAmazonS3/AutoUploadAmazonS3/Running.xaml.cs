@@ -46,148 +46,6 @@ namespace AutoUploadAmazonS3
 
                 foreach (var item in dsListExport)
                 {
-                    //bool isRun = true;
-                    //int i = 0;
-                    //while (isRun)
-                    //{
-                    //    await Task.Run(() =>
-                    //    {
-                    //        if (i < item.Link.Count)
-                    //        {
-                    //            UploadFileMPUHighLevelAPI.UploadFile(item.Link[i]);
-                    //            this.Dispatcher.Invoke(() =>
-                    //            {
-                    //                rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //                rtbContent.ScrollToEnd();
-                    //            });
-                    //            i++;
-                    //        }
-                    //        else
-                    //        {
-                    //            isRun = false;
-                    //        }
-                    //        if (i + 1 < item.Link.Count)
-                    //        {
-                    //            UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 1]);
-                    //            this.Dispatcher.Invoke(() =>
-                    //            {
-                    //                rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //                rtbContent.ScrollToEnd();
-                    //            });
-                    //            i++;
-                    //        }
-                    //        else
-                    //        {
-                    //            isRun = false;
-                    //        }
-                    //        if (i + 2 < item.Link.Count)
-                    //        {
-                    //            UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 2]);
-                    //            this.Dispatcher.Invoke(() =>
-                    //            {
-                    //                rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //                rtbContent.ScrollToEnd();
-                    //            });
-                    //            i++;
-                    //        }
-                    //        else
-                    //        {
-                    //            isRun = false;
-                    //        }
-                    //        if (i + 3 < item.Link.Count)
-                    //        {
-                    //            UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 3]);
-                    //            this.Dispatcher.Invoke(() =>
-                    //            {
-                    //                rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //                rtbContent.ScrollToEnd();
-                    //            });
-                    //            i++;
-                    //        }
-                    //        else
-                    //        {
-                    //            isRun = false;
-                    //        }
-                    //if (i + 4 < item.Link.Count)
-                    //{
-                    //    UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 4]);
-                    //    this.Dispatcher.Invoke(() =>
-                    //    {
-                    //        rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //    });
-                    //    i++;
-                    //}
-                    //else
-                    //{
-                    //    isRun = false;
-                    //}
-                    //if (i + 5 < item.Link.Count)
-                    //{
-                    //    UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 5]);
-                    //    this.Dispatcher.Invoke(() =>
-                    //    {
-                    //        rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //    });
-                    //    i++;
-                    //}
-                    //else
-                    //{
-                    //    isRun = false;
-                    //}
-                    //if (i + 6 < item.Link.Count)
-                    //{
-                    //    UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 6]);
-                    //    this.Dispatcher.Invoke(() =>
-                    //    {
-                    //        rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //    });
-                    //    i++;
-                    //}
-                    //else
-                    //{
-                    //    isRun = false;
-                    //}
-                    //if (i + 7 < item.Link.Count)
-                    //{
-                    //    UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 7]);
-                    //    this.Dispatcher.Invoke(() =>
-                    //    {
-                    //        rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //    });
-                    //    i++;
-                    //}
-                    //else
-                    //{
-                    //    isRun = false;
-                    //}
-                    //if (i + 8 < item.Link.Count)
-                    //{
-                    //    UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 8]);
-                    //    this.Dispatcher.Invoke(() =>
-                    //    {
-                    //        rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //    });
-                    //    i++;
-                    //}
-                    //else
-                    //{
-                    //    isRun = false;
-                    //}
-                    //if (i + 9 < item.Link.Count)
-                    //{
-                    //    UploadFileMPUHighLevelAPI.UploadFile(item.Link[i + 9]);
-                    //    this.Dispatcher.Invoke(() =>
-                    //    {
-                    //        rtbContent.AppendText("Up thành công " + item.Link[i] + Environment.NewLine);
-                    //    });
-                    //    i++;
-                    //}
-                    //else
-                    //{
-                    //    isRun = false;
-                    //}
-                    //    });
-                    //}
                     Export(item.DanhSach, item.Name);
                 }
             });
@@ -240,22 +98,34 @@ namespace AutoUploadAmazonS3
             row1.CreateCell(37).SetCellValue("Button text");
             row1.CreateCell(38).SetCellValue("Position");
             row1.CreateCell(39).SetCellValue("Swatches Attributes");
-            if (name != "Tumbler" && name != "Music Box")
-            {
+            row1.CreateCell(40).SetCellValue("Attribute 1 name");
+            row1.CreateCell(41).SetCellValue("Attribute 1 value(s)");
+            row1.CreateCell(42).SetCellValue("Attribute 1 visible");
+            row1.CreateCell(43).SetCellValue("Attribute 1 global");
+            row1.CreateCell(44).SetCellValue("Attribute 2 name");
+            row1.CreateCell(45).SetCellValue("Attribute 2 value(s)");
+            row1.CreateCell(46).SetCellValue("Attribute 2 visible");
+            row1.CreateCell(47).SetCellValue("Attribute 2 global");
+            row1.CreateCell(48).SetCellValue("Attribute 3 name");
+            row1.CreateCell(49).SetCellValue("Attribute 3 value(s)");
+            row1.CreateCell(50).SetCellValue("Attribute 3 visible");
+            row1.CreateCell(51).SetCellValue("Attribute 3 global");
+            //if (name != "Tumbler" && name != "Music Box")
+            //{
 
-                row1.CreateCell(40).SetCellValue("Attribute 1 name");
-                row1.CreateCell(41).SetCellValue("Attribute 1 value(s)");
-                row1.CreateCell(42).SetCellValue("Attribute 1 visible");
-                row1.CreateCell(43).SetCellValue("Attribute 1 global");
+            //    row1.CreateCell(40).SetCellValue("Attribute 1 name");
+            //    row1.CreateCell(41).SetCellValue("Attribute 1 value(s)");
+            //    row1.CreateCell(42).SetCellValue("Attribute 1 visible");
+            //    row1.CreateCell(43).SetCellValue("Attribute 1 global");
 
-                if (name.Contains("Sneaker"))
-                {
-                    row1.CreateCell(44).SetCellValue("Attribute 2 name");
-                    row1.CreateCell(45).SetCellValue("Attribute 2 value(s)");
-                    row1.CreateCell(46).SetCellValue("Attribute 2 visible");
-                    row1.CreateCell(47).SetCellValue("Attribute 2 global");
-                }
-            }
+            //    if (name.Contains("Sneaker"))
+            //    {
+            //        row1.CreateCell(44).SetCellValue("Attribute 2 name");
+            //        row1.CreateCell(45).SetCellValue("Attribute 2 value(s)");
+            //        row1.CreateCell(46).SetCellValue("Attribute 2 visible");
+            //        row1.CreateCell(47).SetCellValue("Attribute 2 global");
+            //    }
+            //}
 
             int rowIndex = 1;
             foreach (var item in dsRe)
@@ -277,7 +147,7 @@ namespace AutoUploadAmazonS3
         #region Fill data to Row
         public void FillToRow(Export ex, IRow row, string name)
         {
-            for (int i = 0; i < 48; i++)
+            for (int i = 0; i < 52; i++)
             {
                 switch (i)
                 {
@@ -525,7 +395,7 @@ namespace AutoUploadAmazonS3
                     case 40:
                         {
                             //Attribute 1 name
-                            if (name != "Tumbler" || name != "Music Box")
+                            //if (name != "Tumbler" || name != "Music Box")
                             {
                                 row.CreateCell(i).SetCellValue(ex.Attribute1Name);
                             }
@@ -534,50 +404,78 @@ namespace AutoUploadAmazonS3
                     case 41:
                         {
                             //Attribute 1 value(s)
-                            if (name != "Tumbler" || name != "Music Box")
+                            //if (name != "Tumbler" || name != "Music Box")
                                 row.CreateCell(i).SetCellValue(ex.Attribute1Value);
                             break;
                         }
                     case 42:
                         {
                             //Attribute 1 visible
-                            if (name != "Tumbler" || name != "Music Box")
+                            //if (name != "Tumbler" || name != "Music Box")
                                 row.CreateCell(i).SetCellValue(ex.Attribute1Visible);
                             break;
                         }
                     case 43:
                         {
-                            //Attribute 1 global
-                            if (name != "Tumbler" || name != "Music Box")
+                            ////Attribute 1 global
+                            //if (name != "Tumbler" || name != "Music Box")
                                 row.CreateCell(i).SetCellValue(ex.Attribute1Global);
                             break;
                         }
                     case 44:
                         {
                             //Attribute 2 name
-                            if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
+                            //if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
                                 row.CreateCell(i).SetCellValue(ex.Attribute2Name);
                             break;
                         }
                     case 45:
                         {
                             //Attribute 2 value(s)
-                            if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
+                            //if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
                                 row.CreateCell(i).SetCellValue(ex.Attribute2Value);
                             break;
                         }
                     case 46:
                         {
                             //Attribute 2 visible
-                            if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
+                            //if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
                                 row.CreateCell(i).SetCellValue(ex.Attribute2Visible);
                             break;
                         }
                     case 47:
                         {
                             //Attribute 2 global
-                            if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
+                            //if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
                                 row.CreateCell(i).SetCellValue(ex.Attribute2Global);
+                            break;
+                        }
+                    case 48:
+                        {
+                            //Attribute 2 name
+                            //if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
+                            row.CreateCell(i).SetCellValue(ex.Attribute3Name);
+                            break;
+                        }
+                    case 49:
+                        {
+                            //Attribute 2 value(s)
+                            //if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
+                            row.CreateCell(i).SetCellValue(ex.Attribute3Value);
+                            break;
+                        }
+                    case 50:
+                        {
+                            //Attribute 2 visible
+                            //if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
+                            row.CreateCell(i).SetCellValue(ex.Attribute3Visible);
+                            break;
+                        }
+                    case 51:
+                        {
+                            //Attribute 2 global
+                            //if (name != "Music Box" && name != "Tumbler" && name.Contains("Sneaker"))
+                            row.CreateCell(i).SetCellValue(ex.Attribute3Global);
                             break;
                         }
                 }

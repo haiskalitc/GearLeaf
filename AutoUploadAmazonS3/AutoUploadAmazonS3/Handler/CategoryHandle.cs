@@ -32,7 +32,7 @@ namespace Handler
                 }
                 return new List<Category>();
             }
-            catch
+            catch(Exception ex)
             {
                 return new List<Category>();
             }

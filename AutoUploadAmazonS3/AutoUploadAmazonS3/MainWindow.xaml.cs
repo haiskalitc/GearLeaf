@@ -358,21 +358,49 @@ namespace AutoUploadAmazonS3
                 GC.Collect();
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public string pathID = Environment.CurrentDirectory + "\\id.txt";
+        public string path = Environment.CurrentDirectory + "\\link.txt";
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.FolderBrowserDialog folderDlg = new System.Windows.Forms.FolderBrowserDialog();
-            folderDlg.ShowNewFolderButton = true;
-            // Show the FolderBrowserDialog.  
-            DialogResult result = folderDlg.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            await Task.Run(() =>
             {
-                txtPath.Text = folderDlg.SelectedPath;
-                var str = txtPath.Text.Split('\\');
-                trvItemFile.Header = String.IsNullOrEmpty(str[str.Length - 1]) ? str[0] : str[str.Length - 1];
-                dsFolder = new Folder(folderDlg.SelectedPath);
-                trvFiles.DataContext = dsFolder;
-            }
+                Console.ForegroundColor = (System.ConsoleColor)new Random().Next(0, 14);
+                string[] lines = File.ReadAllLines(Environment.CurrentDirectory + "\\db.txt");
+                foreach (string line in lines)
+                    Console.WriteLine("\t\t\t" + line);
+                string[] text = File.ReadAllLines(path);
+                FilesHandle.ID_GLOBAL = int.Parse(File.ReadAllText(pathID));
+                if (text.Count() > 0)
+                {
+                    Crawler craw = new Crawler();
+                    foreach (var link in text)
+                    {
+                        var dsLink = craw.Get(link);
+                        var ds = craw.GetProduct(dsLink);
+                        if (ds.Count > 0)
+                        {
+                            dsListExport.Add(new RootExport() { DanhSach = ds});
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Thất bại - KHÔNG TÌM THẤY LINK XML");
+                }
+            });
+
+            //System.Windows.Forms.FolderBrowserDialog folderDlg = new System.Windows.Forms.FolderBrowserDialog();
+            //folderDlg.ShowNewFolderButton = true;
+            //// Show the FolderBrowserDialog.  
+            //DialogResult result = folderDlg.ShowDialog();
+            //if (result == System.Windows.Forms.DialogResult.OK)
+            //{
+            //    txtPath.Text = folderDlg.SelectedPath;
+            //    var str = txtPath.Text.Split('\\');
+            //    trvItemFile.Header = String.IsNullOrEmpty(str[str.Length - 1]) ? str[0] : str[str.Length - 1];
+            //    dsFolder = new Folder(folderDlg.SelectedPath);
+            //    trvFiles.DataContext = dsFolder;
+            //}
         }
         public RootExport GetList(Folder folder)
         {
@@ -392,7 +420,7 @@ namespace AutoUploadAmazonS3
                             //});   
                             string URL = txtServer.Text.Trim() + folder.Name.Replace(" ", "%20") + "/"
                                                                                      + itemFolder.Name.Replace(" ", "%20") + "/"
-                                                                                     + itemFile.Name.Replace(" ", "%20");//+ 3D % 20Hoodie / Alabama / Alabama % 203D % 20Hoodie % 20ABC13113074.jpeg
+                                                                                     + itemFile.Name.Replace(" ", "%20");
                             dsLink.Add(itemFile.FullName);
                             string IdParent = ID_.ToString();
                             string size = "";
@@ -581,7 +609,7 @@ namespace AutoUploadAmazonS3
                                 Categories = itemFolder.Name,
                                 Tags = "",
                                 ShippingClass = "",
-                                Images = URL + ", " + GetLinkSizeChart(),
+                                Images = URL + ", " + URL + ", " + GetLinkSizeChart(),
                                 Parent = "",
                                 GroupedProducts = "",
                                 Upsells = "",
@@ -757,7 +785,6 @@ namespace AutoUploadAmazonS3
                 GC.Collect();
             }
         }
-
         private async void btnResize_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1054,7 +1081,6 @@ namespace AutoUploadAmazonS3
                 GC.Collect();
             }
             }
-
         private void btnResetId_Click(object sender, RoutedEventArgs e)
         {
             if (CountHandle.getInstance.Update(1, 1) > 0)
@@ -1066,7 +1092,6 @@ namespace AutoUploadAmazonS3
                 System.Windows.Forms.MessageBox.Show("Reset Id thất bại");
             }
         }
-
         private void btnEditSize_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in danhSachSize.Children)
@@ -1085,7 +1110,6 @@ namespace AutoUploadAmazonS3
             btnEditSize.IsEnabled = false;
             btnSaveSize.IsEnabled = true;
         }
-
         private void btnSaveSize_Click(object sender, RoutedEventArgs e)
         {
             string size = "";
@@ -1130,7 +1154,6 @@ namespace AutoUploadAmazonS3
             btnEditSize.IsEnabled = true;
             btnSaveSize.IsEnabled = false;
         }
-
         private void btnAddNewSize_Click(object sender, RoutedEventArgs e)
         {
             var itemTextSize = new System.Windows.Controls.TextBox()
@@ -1160,7 +1183,6 @@ namespace AutoUploadAmazonS3
                 btnSaveSizeImg.IsEnabled = true;
             }
         }
-
         private void btnSaveSizeImg_Click(object sender, RoutedEventArgs e)
         {
             string size = "";
@@ -1221,7 +1243,6 @@ namespace AutoUploadAmazonS3
             }
             return size;
         }
-
         private void Window_Closed(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();

@@ -72,3 +72,6 @@ D:\HaiNguyen\Code\GearLeaf\AutoUploadAmazonS3\AutoUploadAmazonS3\obj\Debug\AutoU
 D:\HaiNguyen\Code\GearLeaf\AutoUploadAmazonS3\AutoUploadAmazonS3\obj\Debug\AutoUploadAmazonS3.exe
 D:\HaiNguyen\Code\GearLeaf\AutoUploadAmazonS3\AutoUploadAmazonS3\obj\Debug\AutoUploadAmazonS3.pdb
 D:\HaiNguyen\Code\GearLeaf\AutoUploadAmazonS3\AutoUploadAmazonS3\obj\Debug\AutoUploadAmazonS3.csprojResolveAssemblyReference.cache
+D:\HaiNguyen\Code\GearLeaf\AutoUploadAmazonS3\AutoUploadAmazonS3\bin\Debug\SeleniumExtras.WaitHelpers.dll
+D:\HaiNguyen\Code\GearLeaf\AutoUploadAmazonS3\AutoUploadAmazonS3\bin\Debug\WebDriver.dll
+D:\HaiNguyen\Code\GearLeaf\AutoUploadAmazonS3\AutoUploadAmazonS3\bin\Debug\WebDriver.xml

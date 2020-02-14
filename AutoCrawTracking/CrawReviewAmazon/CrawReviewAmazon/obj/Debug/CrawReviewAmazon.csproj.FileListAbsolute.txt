@@ -64,3 +64,10 @@ D:\HaiNguyen\Code\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\C
 D:\HaiNguyen\Code\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\CrawReviewAmazon.csproj.GenerateResource.Cache
 D:\HaiNguyen\Code\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\CrawReviewAmazon.exe
 D:\HaiNguyen\Code\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\CrawReviewAmazon.pdb
+D:\HaiNguyen\Code\GearLeaf\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\CrawReviewAmazon.csprojResolveAssemblyReference.cache
+D:\HaiNguyen\Code\GearLeaf\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\MainWindow.g.cs
+D:\HaiNguyen\Code\GearLeaf\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\App.g.cs
+D:\HaiNguyen\Code\GearLeaf\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\CrawReviewAmazon_MarkupCompile.cache
+D:\HaiNguyen\Code\GearLeaf\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\CrawReviewAmazon_MarkupCompile.lref
+D:\HaiNguyen\Code\GearLeaf\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\CrawReviewAmazon.exe
+D:\HaiNguyen\Code\GearLeaf\AutoCrawTracking\CrawReviewAmazon\CrawReviewAmazon\obj\Debug\CrawReviewAmazon.pdb

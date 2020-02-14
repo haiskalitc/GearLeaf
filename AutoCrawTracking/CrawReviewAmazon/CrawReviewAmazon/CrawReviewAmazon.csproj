@@ -91,6 +91,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Crawler.cs" />
+    <Compile Include="FileHandle.cs" />
     <Compile Include="Rate.cs" />
     <Compile Include="Review.cs" />
     <Compile Include="Source.cs" />
