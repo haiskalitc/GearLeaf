@@ -15,3 +15,6 @@ D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.csproj.GenerateR
 D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.exe
 D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.pdb
 D:\HaiNguyen\Code\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.csprojResolveAssemblyReference.cache
+D:\HaiNguyen\Code\GearLeaf\PhanLoaiAnh\PhanLoaiAnh\bin\Debug\PhanLoaiAnh.exe.config
+D:\HaiNguyen\Code\GearLeaf\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.exe
+D:\HaiNguyen\Code\GearLeaf\PhanLoaiAnh\PhanLoaiAnh\obj\Debug\PhanLoaiAnh.pdb

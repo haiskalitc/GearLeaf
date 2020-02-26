@@ -92,8 +92,10 @@ D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\bin\Debug\Csv
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\bin\Debug\EntityFramework.xml
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\bin\Debug\ICSharpCode.SharpZipLib.xml
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\bin\Debug\System.ValueTuple.xml
+D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\AutoUploadMerchking.csprojResolveAssemblyReference.cache
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\Loading.g.cs
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\MainWindow.g.cs
+D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\MerchkingMainWindown.g.cs
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\Running.g.cs
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\App.g.cs
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\AutoUploadAmazonS3_Content.g.cs
@@ -101,11 +103,10 @@ D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\Aut
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\AutoUploadAmazonS3_MarkupCompile.lref
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\Loading.baml
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\MainWindow.baml
+D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\MerchkingMainWindown.baml
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\Running.baml
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\AutoUploadAmazonS3.g.resources
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\AutoUploadAmazonS3.Properties.Resources.resources
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\AutoUploadMerchking.csproj.GenerateResource.Cache
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\AutoUploadAmazonS3.exe
 D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\AutoUploadAmazonS3.pdb
-D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\MerchkingMainWindown.g.cs
-D:\HaiNguyen\Code\GearLeaf\AutoUploadMerchking\AutoUploadMerchking\obj\Debug\MerchkingMainWindown.baml

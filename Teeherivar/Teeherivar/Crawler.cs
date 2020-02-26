@@ -239,7 +239,7 @@ namespace Teeherivar
                 var dsResult = new List<Export>();
                 string des = File.ReadAllText(Environment.CurrentDirectory + "\\des.txt");
 
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < /*1*/ dsLink.Count; i++)
                 {
                     try
                     {
@@ -257,6 +257,7 @@ namespace Teeherivar
                                 string sku = "";
                                 string categories = "";
                                 string tags = "";
+
                                 if (ElementsIsVisible(By.XPath("//h1")))
                                 {
                                     var titleH = driver.FindElement(By.XPath("//h1"));
@@ -264,7 +265,6 @@ namespace Teeherivar
                                     {
                                         title = ToTitleCase(titleH.Text);
                                     }
-
                                 }
 
                                 if (ElementsIsVisible(By.XPath("//span[@class='posted_in']//a")))
@@ -304,6 +304,7 @@ namespace Teeherivar
                                         }
                                     }
                                 }
+
                                 if (ElementsIsVisible(By.XPath("//div[contains(@class,'product-thumbnails')]//div[@class='flickity-viewport']//div[@class='flickity-slider']//div[contains(@class,'col')]//a/img")))
                                 {
                                     var dsAnh = driver.FindElements(By.XPath("//div[contains(@class,'product-thumbnails')]//div[@class='flickity-viewport']//div[@class='flickity-slider']//div[contains(@class,'col')]//a/img"));
@@ -319,6 +320,7 @@ namespace Teeherivar
                                         }
                                     }
                                 }
+
                                 if (ElementsIsVisible(By.XPath("//span[@class='sku']")))
                                 {
                                     var skuElement = driver.FindElement(By.XPath("//span[@class='sku']"));
@@ -330,14 +332,10 @@ namespace Teeherivar
 
                                 if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(url))
                                 {
-                                    //Title
-                                    //Url
-                                    //dsResult.Add(new Product() { Title = ToTitleCase(title), URL = url });
-                                    // string idParent = FilesHandle.ID_GLOBAL.ToString();
                                     var parent = new Export()
                                     {
-                                        ID = "", //idParent,
-                                        Type = "variable", // variation
+                                        ID = "", 
+                                        Type = "variable",
                                         SKU = sku,
                                         Name = ToTitleCase(title),
                                         Published = "1",
@@ -386,7 +384,6 @@ namespace Teeherivar
                                         Attribute3Value = "Athletic Heather, Black, Blue, Chocolate, Forest Green, Irish Green, Light Blue, Light Pink, Navy, Orange, Pink, Purple, Red, Sports Grey, White",
                                         Attribute3Visible = "1"
                                     };
-                                    // FilesHandle.ID_GLOBAL++;
                                     if (parent != null)
                                     {
                                         dsResult.Add(parent);

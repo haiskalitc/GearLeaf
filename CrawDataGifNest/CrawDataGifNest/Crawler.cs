@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -33,7 +34,7 @@ namespace CrawDataGifNest
             chromeOption.AddArguments("chrome.switches", "--disable-extensions --disable-extensions-file-access-check " +
                 "--disable-extensions-http-throttling --disable-infobars --enable-automation --start-maximized");
             chromeOption.AddUserProfilePreference("credentials_enable_service", false);
-            chromeOption.AddArgument("--headless");
+            //chromeOption.AddArgument("--headless");
             chromeOption.AddUserProfilePreference("profile.password_manager_enabled", false);
             chromeOption.AddArgument("disable-infobars");
             driver = new ChromeDriver(chromeDriverService, chromeOption);
@@ -69,12 +70,25 @@ namespace CrawDataGifNest
             }
             return dsResult;
         }
-
+        public static string Remove_Special_Characters(string str)
+        {
+            return Regex.Replace(str, "[^a-zA-Z0-9._]", " ");
+        }
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        public string ToTitleCase(string str)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());
+        }
         public void Dowload(List<string> dsLink)
         {
             if(dsLink.Count > 0)
             {
-                for (int j = 1271; j < dsLink.Count; j++)
+                for (int j = 1522; j < dsLink.Count; j++)
                 {
                     if (!String.IsNullOrEmpty(dsLink[j]))
                     {
@@ -102,29 +116,45 @@ namespace CrawDataGifNest
                                 string fileSavePath = "";
                                 if (titleH.Text.Contains("Hoodie"))
                                 {
-
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Hoodie\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Hoodie\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\"+ title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " +  RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
-                                else if (titleH.Text.Contains("Sweatpants"))
+                                else if (titleH.Text.Contains("Sweatpant"))
                                 {
-
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Sweatpants\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Sweatpant\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
@@ -133,14 +163,23 @@ namespace CrawDataGifNest
 
                                     try
                                     {
-                                        fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Sneaker\\" + title.Replace("&","").Replace(":", "");
+                                        string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Sneaker\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                        if (!Directory.Exists(path))
+                                        {
+                                            Directory.CreateDirectory(path);
+                                        }
+                                        fileSavePath = path + "\\" + title;
                                         if (!Directory.Exists(fileSavePath))
                                         {
                                             Directory.CreateDirectory(fileSavePath);
                                         }
                                         else
                                         {
-                                            FLAG = true;
+                                            fileSavePath += " " + RandomString(5);
+                                            if (!Directory.Exists(fileSavePath))
+                                            {
+                                                Directory.CreateDirectory(fileSavePath);
+                                            }
                                         }
                                     }
                                     catch(Exception ex)
@@ -152,126 +191,206 @@ namespace CrawDataGifNest
                                 else if (titleH.Text.Contains("Phone Case"))
                                 {
 
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Phone Case\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Phone Case\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
                                 else if (titleH.Text.Contains("T-Shirt"))
                                 {
 
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\T-Shirt\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\T-Shirt\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
                                 else if (titleH.Text.Contains("Jacket"))
                                 {
 
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Jacket\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Jacket\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }                                       
                                     }
                                     ///
                                 }
                                 else if (titleH.Text.Contains("Jersey"))
                                 {
 
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Jersey\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Jersey\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
                                 else if (titleH.Text.Contains("Low-Top"))
                                 {
 
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Low Top\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Low-Top\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
                                 else if (titleH.Text.Contains("Shade"))
                                 {
 
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Shade\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Shade\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
                                 else if (titleH.Text.Contains("Bedding Set"))
                                 {
 
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Bedding Set\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Bedding Set\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
                                 else if (titleH.Text.Contains("Sweatshirt"))
                                 {
 
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Sweatshirt\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Sweatshirt\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                     ///
                                 }
                                 else
                                 {
-
-                                    fileSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Other\\" + title;
+                                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\GifNest\\Other\\" + Remove_Special_Characters(dsTitleNav[dsTitleNav.Count - 1].Text);
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    fileSavePath = path + "\\" + title;
                                     if (!Directory.Exists(fileSavePath))
                                     {
                                         Directory.CreateDirectory(fileSavePath);
                                     }
                                     else
                                     {
-                                        FLAG = true;
+                                        fileSavePath += " " + RandomString(5);
+                                        if (!Directory.Exists(fileSavePath))
+                                        {
+                                            Directory.CreateDirectory(fileSavePath);
+                                        }
                                     }
                                 }
                                 if (!FLAG)
@@ -328,6 +447,10 @@ namespace CrawDataGifNest
                                             }
                                         }
                                     }
+                                }
+                                else
+                                {
+                                    Console.WriteLine(dsLink[j]);
                                 }
                             }
                         }
@@ -404,12 +527,6 @@ namespace CrawDataGifNest
             }
         }
         */
-
-        public string ToTitleCase(string str)
-        {
-            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());
-        }
-
         public static string RandomString()
         {
 
