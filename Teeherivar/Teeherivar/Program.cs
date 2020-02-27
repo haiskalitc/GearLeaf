@@ -75,7 +75,7 @@ namespace Teeherivar
 
             #region Xuất File GifNest
             GifNestHandle gifNest = new GifNestHandle();
-            string name = "3D Hoodie";
+            string name = "Sporty Sneaker";
             //123983
             //Round Carpet
             //Low Top

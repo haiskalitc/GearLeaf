@@ -522,7 +522,9 @@ namespace Teeherivar
                             sizeChart = "https://pillowprofits.com/wp-content/uploads/2018/06/sizing-chart-1.png";
                             break;
                         }
-                    case "Chunky Sneaker":
+                    case "Sneaker Shoes":
+                    case "Sporty Sneaker":
+                    case "Chunky Sneakers":
                         {
                             DanhSachSize = new List<string>() { "US6(EU39)", "US7(EU40)", "US7.5(EU41)", "US8(EU41.5)", "US8.5(EU42)", "US9(EU42.5)", "US9.5(EU43)", "US10(EU44)", "0",
                             "US5.5 (EU36)", "US6 (EU36.5)", "US6.5 (EU37)", "US7 (EU38)", "US8 (EU39)",
@@ -599,7 +601,7 @@ namespace Teeherivar
                                     {
                                         pathImage += ", ";
                                     }
-                                    pathImage += "http://35.197.63.152/uploadcdn/aquacozys/" + folder.Name + "/" +
+                                    pathImage += "http://35.197.63.152/uploadcdn/" + folder.Name + "/" +
                                         itemFolder.Name + "/" + file.Name;
                                 if (!String.IsNullOrEmpty(pathImage))
                                 {
@@ -652,7 +654,7 @@ namespace Teeherivar
                                         Position = "",
                                         SwatchesAttributes = "",
                                     };
-                                    if (name.Equals("Sneaker") || name.Equals("Boots") || name.Equals("Chunky Sneaker") || name.Equals("Leather Boots"))
+                                    if (name.Equals("Sneaker") || name.Equals("Boots") || name.Equals("Chunky Sneakers") || name.Equals("Sneaker Shoes") || name.Equals("Sporty Sneaker") || name.Equals("Leather Boots"))
                                     {
                                         parent.Attribute1Global = "1";
                                         parent.Attribute1Name = "Style";
@@ -715,7 +717,7 @@ namespace Teeherivar
                                                         RegularPrice = name.Equals("Phone Case") ? "29.95" :
                                                         name.Equals("Sneaker") ? "59.95" :
                                                         name.Equals("Leather Boots") ? "65.95" :
-                                                        name.Equals("Chunky Sneaker") ? "74.95" :
+                                                        (name.Equals("Chunky Sneakers") || name.Equals("Sneaker Shoes") || name.Equals("Sporty Sneaker")) ? "74.95" :
                                                         name.Equals("Boots") ? "74.95"
                                                         : DanhSachGia[i],
                                                         Categories = "",
@@ -731,7 +733,7 @@ namespace Teeherivar
                                                         Position = "",
                                                         SwatchesAttributes = "",
                                                     };
-                                                    if (name.Equals("Sneaker") || name.Equals("Boots") || name.Equals("Chunky Sneaker") || name.Equals("Leather Boots"))
+                                                    if (name.Equals("Sneaker") || name.Equals("Boots") || name.Equals("Chunky Sneakers") || name.Equals("Sneaker Shoes") || name.Equals("Sporty Sneaker") || name.Equals("Leather Boots"))
                                                     {
                                                         child.Attribute1Global = "1";
                                                         child.Attribute1Name = "Style";
