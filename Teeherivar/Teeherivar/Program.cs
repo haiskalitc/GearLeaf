@@ -61,38 +61,39 @@ namespace Teeherivar
             //    }
             //}
 
-            // Data T-Shirt
-            //string path = @"D:\HaiNguyen\datashirt\datashirt";
-            //FileHandle file = new FileHandle();
-            //var dsImport = file.GetProductFromForlder(path);
-            //Export(dsImport[8], "DataShirt", 1, true);
-            //int row = 1;
-            //foreach (var item in dsImport)
+            //Data T-Shirt
+            string path = @"D:\datashirt - Copy";
+            FileHandle file = new FileHandle();
+            var dsImport = file.GetProductFromForlder(path);
+            int row = 1;
+            foreach (var item in dsImport)
+            {
+                Export(item, "Hoodie", row, true);
+                row++;
+            }
+            // 100/5 = 20;
+            // 1 
+
+           // #region Xuất File GifNest
+            //GifNestHandle gifNest = new GifNestHandle();
+            //string name = "Sporty Sneaker";
+            ////123983
+            ////Round Carpet
+            ////Low Top
+            ////3D Hoodie
+            //var ds = gifNest.GetProductFromFileAquacozy(@"D:\HaiNguyen\Code\Aquacozy1_Fix\Aquacozys\" + name, name);
+            //if (ds.Count > 0)
             //{
-            //    row++;
+            //    //131956
+            //    ExportGifNest(ds, name);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Product is not found!");
             //}
             #endregion
-
-            #region Xuất File GifNest
-            GifNestHandle gifNest = new GifNestHandle();
-            string name = "Sporty Sneaker";
-            //123983
-            //Round Carpet
-            //Low Top
-            //3D Hoodie
-            var ds = gifNest.GetProductFromFileAquacozy(@"D:\HaiNguyen\Code\Aquacozy1_Fix\Aquacozys\" + name, name);
-            if (ds.Count > 0)
-            {
-                //131956
-                ExportGifNest(ds, name);
-            }
-            else
-            {
-                Console.WriteLine("Product is not found!");
-            }
-            #endregion
-            Console.WriteLine("Done!");
-            Console.ReadLine();
+            //Console.WriteLine("Done!");
+            //Console.ReadLine();
         }
         //8 + 8 + 20 + 7
 
@@ -150,10 +151,10 @@ namespace Teeherivar
             row1.CreateCell(45).SetCellValue("Attribute 2 value(s)");
             row1.CreateCell(46).SetCellValue("Attribute 2 visible");
             row1.CreateCell(47).SetCellValue("Attribute 2 global");
-            row1.CreateCell(48).SetCellValue("Attribute 3 name");
-            row1.CreateCell(49).SetCellValue("Attribute 3 value(s)");
-            row1.CreateCell(50).SetCellValue("Attribute 3 visible");
-            row1.CreateCell(51).SetCellValue("Attribute 3 global");
+            //row1.CreateCell(48).SetCellValue("Attribute 3 name");
+            //row1.CreateCell(49).SetCellValue("Attribute 3 value(s)");
+            //row1.CreateCell(50).SetCellValue("Attribute 3 visible");
+            //row1.CreateCell(51).SetCellValue("Attribute 3 global");
             int rowIndex = 1;
             foreach (var item in dsRe)
             {
@@ -627,7 +628,7 @@ namespace Teeherivar
         }
         public static void FillToRow(Export ex, IRow row)
         {
-            for (int i = 0; i < 52; i++)
+            for (int i = 0; i < 48; i++)
             {
                 switch (i)
                 {

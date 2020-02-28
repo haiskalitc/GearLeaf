@@ -11,7 +11,7 @@ namespace LocThuMuc
         static void Main(string[] args)
         {
             Handle han = new Handle();
-            han.PhanLoaiBa();
+            han.PhanLoaiBonHuHuVipProDepTraiKuTePhoMaiQue();
             Console.WriteLine("Done!");
             Console.ReadLine();
         }

@@ -51,6 +51,71 @@ namespace LocThuMuc
                 }
             }
         }
+
+        public string StringToString(string str)
+        {
+            string res = "";
+            var arr = str.Split(' ');
+            foreach (var item in arr)
+            {
+                if (!String.IsNullOrEmpty(res))
+                {
+                    res += " ";
+                }
+
+                if (!String.IsNullOrEmpty(item.Trim()))
+                {
+                    if (item.Trim().ToLower().Contains("Tshirt"))
+                    {
+                        if (!res.ToLower().Trim().Contains("hoodie"))
+                        {
+                            res += "Hoodie";
+                        }
+                    }
+                    else
+                    {
+                        res += item.Trim();
+                    }
+                }
+            }
+            if (!res.ToLower().Trim().Contains("hoodie"))
+            {
+                res += " Hoodie";
+            }
+            return ToTitleCase(res);
+        }
+
+        public void PhanLoaiBonHuHuVipProDepTraiKuTePhoMaiQue()
+        {
+            string input = File.ReadAllText(Environment.CurrentDirectory + "\\input.txt");
+            ZlpDirectoryInfo folder = new ZlpDirectoryInfo(input);
+            string s = "";
+            foreach (ZlpDirectoryInfo itemFolder in folder.GetDirectories()) 
+            {
+                foreach (ZlpDirectoryInfo item in itemFolder.GetDirectories())
+                {
+                    if (item.Name.ToLower().Contains("shir"))
+                    {
+                        s += (item.Name) + Environment.NewLine;
+                    }
+                    // string name = item.Name.Replace("T Shirt", "");
+                    //try
+                    //{
+                    //    if (item.Name.ToLower().Contains("shirt"))
+                    //    {
+                    //        item.Delete(true);
+                    //    }
+                    //    item.MoveTo(itemFolder.GetFullPath() + "/" + StringToString(name));
+                    //}
+                    //catch
+                    //{
+                    //    item.MoveTo(itemFolder.GetFullPath() + "/" + StringToString(name) + " " + new Random().Next(0, 100));
+
+                    //}
+                }
+            }
+        }
+
         public void PhanLoaiBa()
         {
             string input = File.ReadAllText(Environment.CurrentDirectory + "\\input.txt");

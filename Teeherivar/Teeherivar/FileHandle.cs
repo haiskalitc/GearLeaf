@@ -17,12 +17,21 @@ namespace Teeherivar
         public List<string> DanhSachSize = new List<string>() { "2XL", "3XL", "4XL", "5XL", "L", "M", "S", "XL" };
         public List<string> DanhSachMau = new List<string>()
         {
-            "Athletic Heather",
+            //thletic Heather",
             "Black",
             "Blue",
-            "Chocolate",
-            "Forest Green", "Irish Green", "Light Blue", "Light Pink", "Navy",
-            "Orange", "Pink", "Purple", "Red", "Sports Grey", "White"
+           // "Chocolate",
+         //   "Forest Green",
+          //  "Irish Green",
+          //  "Light Blue",
+          //  "Light Pink",
+            "Navy",
+         //   "Orange",
+         //   "Pink",
+         //  "Purple",
+          //  "Red",
+            "Sports Grey",
+          //  "White"
         };
         public List<string> DanhSachLoai = new List<string>() { "Classic T - Shirt", "Crewneck Sweatshirt", "Hoodie", "Ladies T - Shirt" };
         private static Random random = new Random();
@@ -42,9 +51,10 @@ namespace Teeherivar
                 Folder folder = new Folder(path);
                 if (folder.SubFolders.Count > 0)
                 {
+                    int countSp = 0;
+                    var ds = new List<Export>();
                     foreach (Folder itemFolder in folder.SubFolders)
                     {
-                        var ds = new List<Export>();
                         if (itemFolder.SubFolders.Count > 0)
                         {
                             //
@@ -56,22 +66,27 @@ namespace Teeherivar
                                     string image = "";
                                     foreach (FileInfo itemFile in itemProduct.Files)
                                     {
-                                        if (!String.IsNullOrEmpty(image))
+                                        //if (!String.IsNullOrEmpty(image))
+                                        //{
+                                        //    image += ", ";
+                                        //}
+                                        if (itemFile.Name.Split('_').Length == 4)
                                         {
-                                            image += ", ";
+                                            image += "http://35.197.63.152/uploadcdn/datashirt/" +
+    itemFolder.Name + "/" + itemProduct.Name + "/" + itemFile.Name;
                                         }
-                                        image += "http://35.197.63.152/uploadcdn/datashirt/" +
-                                            itemFolder.Name + "/" + itemProduct.Name + "/" + itemFile.Name;
+
                                     }
 
-                                    image += ", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/ladiestshirt.jpg" + ", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/unisextshirt.jpg"
-                                        +", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/sweater.jpg" + ", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/hoodies.jpg";
+                                    //image += ", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/ladiestshirt.jpg" + ", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/unisextshirt.jpg"
+                                    //    +", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/sweater.jpg" + ", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/hoodies.jpg";
+                                    image += ", " + "https://sizeallproduct.s3.amazonaws.com/Size+Chart/hoodies.jpg";
                                     var SKU = RandomString(20);
                                     var parent = new Export()
                                     {
                                         ID = id + "",
                                         Type = "variable",
-                                        SKU = SKU,
+                                        SKU = "",
                                         Name = ToTitleCase(itemProduct.Name),
                                         Published = "1",
                                         IsFeatured = "0",
@@ -106,27 +121,30 @@ namespace Teeherivar
                                         ButtonText = "",
                                         Position = id + "",
                                         SwatchesAttributes = "",
+                                        //Attribute1Global = "1",
+                                        //Attribute1Name = "Style",
+                                        //Attribute1Value = "Classic T-Shirt, Crewneck Sweatshirt, Hoodie, Ladies T-Shirt",
+                                        //Attribute1Visible = "1",
                                         Attribute1Global = "1",
-                                        Attribute1Name = "Style",
-                                        Attribute1Value = "Classic T-Shirt, Crewneck Sweatshirt, Hoodie, Ladies T-Shirt",
+                                        Attribute1Name = "Size",
+                                        Attribute1Value = "2XL, 3XL, 4XL, 5XL, L, M, S, XL",
                                         Attribute1Visible = "1",
                                         Attribute2Global = "1",
-                                        Attribute2Name = "Size",
-                                        Attribute2Value = "2XL, 3XL, 4XL, 5XL, L, M, S, XL",
-                                        Attribute2Visible = "1",
-                                        Attribute3Global = "1",
-                                        Attribute3Name = "Color",
-                                        Attribute3Value = "Athletic Heather, Black, Blue, Chocolate, Forest Green, Irish Green, Light Blue, Light Pink, Navy, Orange, Pink, Purple, Red, Sports Grey, White",
-                                        Attribute3Visible = "1"
+                                        Attribute2Name = "Color",
+                                        Attribute2Value = "Black, Blue, Navy, Sports Grey",
+                                        // Attribute2Value = "Athletic Heather, Black, Blue, Chocolate, Forest Green, Irish Green, Light Blue, Light Pink, Navy, Orange, Pink, Purple, Red, Sports Grey, White",
+                                        Attribute2Visible = "1"
                                     };
                                     if (parent != null)
                                     {
+                                        countSp++;
                                         ds.Add(parent);
                                         id++;
                                         #region Child
-                                        foreach (var itemLoai in DanhSachLoai)
-                                        {
-                                            double price = itemLoai.Equals("Class T-Shirt") ? 19.95 : itemLoai.Equals("Crewneck Sweatshirt") ? 31.95 : itemLoai.Equals("Hoodie") ? 34.95 : 22.95;
+                                        //foreach (var itemLoai in DanhSachLoai)
+                                       // {
+                                            // double price = itemLoai.Equals("Class T-Shirt") ? 19.95 : itemLoai.Equals("Crewneck Sweatshirt") ? 31.95 : itemLoai.Equals("Hoodie") ? 34.95 : 22.95;
+                                            double price = 34.95;
                                             foreach (var itemMau in DanhSachMau)
                                             {
                                                 foreach (var itemSize in DanhSachSize)
@@ -168,7 +186,7 @@ namespace Teeherivar
                                                         Tags = parent.Tags,
                                                         ShippingClass = "",
                                                         Images = parent.Images,
-                                                        Parent = parent.SKU,
+                                                        Parent = "id:" + parent.ID,
                                                         GroupedProducts = "",
                                                         Upsells = "",
                                                         CrossSells = "",
@@ -176,18 +194,18 @@ namespace Teeherivar
                                                         ButtonText = "",
                                                         Position = id + "",
                                                         SwatchesAttributes = "",
+                                                        //Attribute1Global = "1",
+                                                        //Attribute1Name = "Style",
+                                                        //Attribute1Value = itemLoai,
+                                                        //Attribute1Visible = "",
                                                         Attribute1Global = "1",
-                                                        Attribute1Name = "Style",
-                                                        Attribute1Value = itemLoai,
+                                                        Attribute1Name = "Size",
+                                                        Attribute1Value = itemSize,
                                                         Attribute1Visible = "",
                                                         Attribute2Global = "1",
-                                                        Attribute2Name = "Size",
-                                                        Attribute2Value = itemSize,
-                                                        Attribute2Visible = "",
-                                                        Attribute3Global = "1",
-                                                        Attribute3Name = "Color",
-                                                        Attribute3Value = itemMau,
-                                                        Attribute3Visible = ""
+                                                        Attribute2Name = "Color",
+                                                        Attribute2Value = itemMau,
+                                                        Attribute2Visible = ""
                                                     };
                                                     if (child != null)
                                                     {
@@ -198,23 +216,30 @@ namespace Teeherivar
                                             }
                                         }
                                         #endregion
-                                    }
+                                   // }
                                 }
                                 else
                                 {
                                     Console.WriteLine(itemProduct.FullPath + " has not files");
                                 }
-                            }
-                            if (ds.Count > 0)
-                            {
-                                result.Add(ds);
-                               // File.WriteAllText(Environment.CurrentDirectory + "\\id.txt", id.ToString());
+                                if (ds.Count > 0 && countSp > 1000)
+                                {
+                                    result.Add(ds);
+                                    countSp = 0;
+                                    ds = new List<Export>();
+                                }
                             }
                         }
                         else
                         {
                             Console.WriteLine("Product is not exist");
                         }
+                    }
+                    if (ds.Count > 0)
+                    {
+                        result.Add(ds);
+                        countSp = 0;
+                        ds = new List<Export>();
                     }
                 }
                 else
